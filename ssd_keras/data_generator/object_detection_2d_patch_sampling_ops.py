@@ -324,7 +324,7 @@ class CropPad:
             # Translate the box coordinates to the patch's coordinate system.
             labels[:, [ymin, ymax]] -= patch_ymin
             labels[:, [xmin, xmax]] -= patch_xmin
-
+                
             # Compute all valid boxes for this patch.
             if not (self.box_filter is None):
                 self.box_filter.labels_format = self.labels_format

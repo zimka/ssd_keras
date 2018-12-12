@@ -271,7 +271,8 @@ class DataGenerator:
                   include_classes='all',
                   random_sample=False,
                   ret=False,
-                  verbose=True):
+                  verbose=True,
+                  add_jpg_postfix=False):
         '''
         Arguments:
             images_dir (str): The path to the directory that contains the images.
@@ -334,7 +335,6 @@ class DataGenerator:
                     data.append(box)
 
         data = sorted(data) # The data needs to be sorted, otherwise the next step won't give the correct result
-
         # Now that we've made sure that the data is sorted by file names,
         # we can compile the actual samples and labels lists
 
@@ -1098,7 +1098,6 @@ class DataGenerator:
                     ymin = self.labels_format['ymin']
                     xmax = self.labels_format['xmax']
                     ymax = self.labels_format['ymax']
-
                     if np.any(batch_y[i][:,xmax] - batch_y[i][:,xmin] <= 0) or np.any(batch_y[i][:,ymax] - batch_y[i][:,ymin] <= 0):
                         if degenerate_box_handling == 'warn':
                             warnings.warn("Detected degenerate ground truth bounding boxes for batch item {} with bounding boxes {}, ".format(i, batch_y[i]) +
